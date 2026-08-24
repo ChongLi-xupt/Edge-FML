@@ -172,7 +172,7 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @article{PFDMCMOEA3,
-  title={Personalized Federated Dual-Membrane Constrained Multi-Objective Evolutionary Algorithm for Edge Computing},
+  title={Federated Membrane Learning for Heterogeneous Edge Intelligence: A Privacy-Preserving, Communication-Efficient Framework for Constrained Multi-Objective Optimization},
   author={Shouheng Tuo, Chong Li, Ye Tian, Yixin Yang, and Huiying Hu},
   journal={},
   year={2026}
