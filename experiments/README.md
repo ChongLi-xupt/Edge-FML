@@ -1,0 +1,119 @@
+# Edge-FML Experiment Framework
+
+This directory contains the experimental framework for testing and evaluating the Edge-FML / PFDM-CMOEA3 algorithm: ablation studies, algorithm comparison, performance scaling, and parameter sensitivity analysis.
+
+## Directory Structure
+
+```
+experiments/
+├── config.m                                    # Central configuration for all experiments
+├── comprehensive_testing_framework.m           # Programmatic runner (all test modes)
+├── ablation_studies/                           # Ablation studies
+│   ├── run_ablation_experiments.m              # Run ablation experiments
+│   ├── generate_ablation_report.m             # Generate HTML/Markdown ablation report
+│   └── plot_ablation_diagnostics.m            # Diagnostic plots
+├── algorithm_comparison/                       # Algorithm comparison experiments
+│   ├── run_comparison_experiments.m            # Run comparison experiments
+│   ├── generate_comparison_report.m           # Generate HTML comparison report
+│   ├── generate_all_plots_raw.m               # Raw result plots
+│   └── test/                                   # Utility/inspection scripts
+├── performance_scaling/                        # Performance scaling experiments
+│   ├── run_performance_experiments.m           # Run scaling experiments
+│   └── generate_performance_report.m          # Generate scaling report
+└── sensitivity_experiment/                     # Parameter sensitivity analysis
+    ├── run_sensitivity_experiments.m           # Run sensitivity experiments
+    └── generate_sensitivity_report.m          # Generate sensitivity report
+```
+
+Runtime outputs (`results/`, `figures/`, nested `experiments/` dirs) are auto-generated and ignored by git.
+
+## Experiment Types
+
+### 1. Ablation Studies
+
+Tests the effectiveness of individual components of Edge-FML by disabling them one by one. Variants supported by the runner (`experiments/ablation_studies/run_ablation_experiments.m`):
+
+- `full`: Full Edge-FML implementation with all components enabled (baseline)
+- `no_clustering`: Without clustering (flat structure)
+- `no_atsss`: Without adaptive-threshold secret sharing (fixed threshold)
+- `no_compat`: Without the solution compatibility mechanism
+- `no_local_enhance`: Without local optimizer enhancements
+- `no_comm_compress`: Without communication compression
+- `theta_keep_*`: Sweep of the compatibility threshold (e.g., `theta_keep_0.40`)
+
+The active variant list is configured in `experiments/config.m` (`ablationConfig.variants`), which maps variant names to code paths in the ablation runner.
+
+### 2. Algorithm Comparison Experiments
+
+Compares Edge-FML against the following baselines:
+
+- **MTDMS / IMTCMO / IMTCMO-BS / ICMA / DRLOS-EMCMO**: Ideal centralized baselines that combine all regions into a single problem (implemented via the `*_Local.m` adapters in `src/`; original reference implementations live under `baselines/`)
+- **Independent-MTDMS**: No-collaboration baseline
+- **Centralized-MTDMS**: Upper-bound centralized baseline
+
+The comparison uses an **algorithm-independent HV reference point** (`worst × 1.2 + 0.1`) so that HV values remain comparable across all algorithms and experiments.
+
+### 3. Performance Scaling Experiments
+
+Tests scalability across dataset sizes, region counts, and scenario types:
+
+- Hypervolume (HV) vs. number of regions
+- Communication overhead vs. number of regions
+- Feasibility rate vs. number of regions
+- Execution time vs. number of regions
+
+### 4. Sensitivity Analysis
+
+Evaluates how Edge-FML performance responds to parameter variations (population size, crossover rate, mutation factor, etc.), supporting the parameter-robustness analysis in the paper.
+
+## Running Experiments
+
+### Interactive runner (from project root)
+
+```matlab
+>> run_experiments
+```
+
+Displays a menu (1: performance scaling, 2: ablation, 3: comparison) and allows parameter overrides.
+
+### Programmatic runner
+
+```matlab
+>> run_comprehensive_experiments
+```
+
+Set `testMode` inside the script to `'all' | 'performance' | 'comparison' | 'ablation' | 'stress'`.
+
+### Individual suites
+
+```matlab
+run('experiments/ablation_studies/run_ablation_experiments.m');
+run('experiments/algorithm_comparison/run_comparison_experiments.m');
+run('experiments/performance_scaling/run_performance_experiments.m');
+run('experiments/sensitivity_experiment/run_sensitivity_experiments.m');
+```
+
+## Configuration
+
+All parameters are defined in `experiments/config.m`:
+
+- Algorithm parameters (`R_max`, `M_local`, population size, DE operators)
+- Evaluation parameters (`repeat_runs`, HV reference point)
+- Datasets (`data_dir = 'benchmarks'`, dataset names)
+- Ablation variants, comparison algorithms, sensitivity parameter ranges
+
+## Results & Reports
+
+- Raw results: `experiments/results/*.mat` (auto-created)
+- Figures: `experiments/figures/` (auto-created)
+- Reports: HTML/Markdown reports generated by the `generate_*_report.m` scripts, including Bootstrap confidence intervals and Holm-corrected statistical tests
+
+For paper-grade experiments, use **200 generations × 10 repeated runs** per scenario, as configured in `config.m`.
+
+## Requirements
+
+- MATLAB R2020a+
+- Statistics and Machine Learning Toolbox (clustering, statistical tests)
+- Parallel Computing Toolbox (optional)
+
+Part of the Edge-FML project (see the repository root README).

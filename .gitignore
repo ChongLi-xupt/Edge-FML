@@ -1,0 +1,37 @@
+# ============ MATLAB ============
+# Autosave files
+*.asv
+*.m~
+*.mex*
+
+# Generated .mat data (benchmark datasets under benchmarks/ are kept)
+*.mat
+!benchmarks/*.mat
+
+# ============ Experiment outputs (auto-generated at runtime) ============
+experiments/results/
+experiments/figures/
+experiments/*/experiments/
+results/
+comparison/
+*.log
+
+# ============ Figures (generated) ============
+figures/*.png
+figures/*.jpg
+figures/*.fig
+
+# ============ IDE / Editors ============
+.trae/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ============ OS ============
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============ WorkBuddy project memory ============
+.workbuddy/
