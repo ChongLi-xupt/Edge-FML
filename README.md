@@ -2,8 +2,6 @@
 
 **Edge-FML** (Edge Federated Membrane Learning) is a MATLAB implementation of a privacy-preserving distributed multi-objective optimization framework for heterogeneous edge computing environments. It addresses the tri-objective optimization problem of **latency**, **energy consumption**, and **security risk** under privacy and communication constraints.
 
-> The framework is also referred to as **PFDM-CMOEA3** (Personalized Federated Dual-Membrane Constrained Multi-Objective Evolutionary Algorithm) in the accompanying paper.
-
 ## Key Features
 
 - **Privacy-Preserving**: Adaptive Threshold Shamir Secret Sharing (AT-SSS) for secure knowledge exchange across regions
@@ -171,11 +169,12 @@ Runs a lightweight smoke test to verify the framework initializes and executes c
 If you use this code in your research, please cite:
 
 ```bibtex
-@article{PFDMCMOEA3,
+@article{Edge-FML,
   title={Federated Membrane Learning for Heterogeneous Edge Intelligence: A Privacy-Preserving, Communication-Efficient Framework for Constrained Multi-Objective Optimization},
   author={Shouheng Tuo, Chong Li, Ye Tian, Yixin Yang, and Huiying Hu},
-  journal={},
-  year={2026}
+  journal={Swarm and Evolutionary Computation},
+  year={2026}, 
+  note={Under review}
 }
 ```
 
