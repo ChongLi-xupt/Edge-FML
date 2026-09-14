@@ -121,12 +121,12 @@ Runs all experiment suites (`all`); switch `testMode` in the script to run a sub
 
 ### Individual experiment suites
 
-| Suite | Entry script | Purpose |
-|-------|--------------|---------|
-| Ablation | `experiments/ablation_studies/run_ablation_experiments.m` | Component removal tests (A0-A9, A12): dual-membrane, fast repair, minimal variant, etc. |
-| Comparison | `experiments/algorithm_comparison/run_comparison_experiments.m` | Edge-FML vs IMTCMO / IMTCMO-BS / ICMA / DRLOS-EMCMO / MTDMS baselines |
-| Performance | `experiments/performance_scaling/run_performance_experiments.m` | Scaling vs number of regions / federated rounds |
-| Sensitivity | `experiments/sensitivity_experiment/run_sensitivity_experiments.m` | Parameter sensitivity analysis |
+| Suite       | Entry script                                                 | Purpose                                                      |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Ablation    | `experiments/ablation_studies/run_ablation_experiments.m`    | Component removal tests (A0-A9, A12): dual-membrane, fast repair, minimal variant, etc. |
+| Comparison  | `experiments/algorithm_comparison/run_comparison_experiments.m` | Edge-FML vs IMTCMO / IMTCMO-BS / ICMA / DRLOS-EMCMO / MTDMS baselines |
+| Performance | `experiments/performance_scaling/run_performance_experiments.m` | Scaling vs number of regions / federated rounds              |
+| Sensitivity | `experiments/sensitivity_experiment/run_sensitivity_experiments.m` | Parameter sensitivity analysis                               |
 
 Each suite also ships a `generate_*_report.m` / `plot_*` script to produce tables, figures, and statistical test reports (Bootstrap + Holm correction) from saved results.
 
@@ -134,16 +134,16 @@ Each suite also ships a `generate_*_report.m` / `plot_*` script to produce table
 
 ## Core Components
 
-| Component | File | Responsibility |
-|-----------|------|----------------|
-| Regional config | `RegionConfig.m` | Heterogeneous region attributes (compute, bandwidth, latency, security level) |
-| Task spec | `TaskData.m` | Task requirements (data size, workload, deadline, security) |
-| Local optimizer | `MTDMS_CMOEA_Local.m` | Dual-membrane local evolution, DE operators, dynamic constraints |
-| Privacy | `ShamirSecretSharing.m` | Adaptive-threshold secret sharing, type-aware encoding |
-| Clustering | `ClusterManager.m` | Spectral clustering, eigengap-based cluster count |
-| Adaptation | `SolutionAdapter.m` | Parameter normalization + feasibility repair |
-| Metrics | `PerformanceMetrics.m` | HV, IGD, diversity, spacing |
-| Statistics | `StatisticalAnalyzer.m` | Bootstrap confidence intervals, Holm-corrected tests |
+| Component       | File                    | Responsibility                                               |
+| --------------- | ----------------------- | ------------------------------------------------------------ |
+| Regional config | `RegionConfig.m`        | Heterogeneous region attributes (compute, bandwidth, latency, security level) |
+| Task spec       | `TaskData.m`            | Task requirements (data size, workload, deadline, security)  |
+| Local optimizer | `MTDMS_CMOEA_Local.m`   | Dual-membrane local evolution, DE operators, dynamic constraints |
+| Privacy         | `ShamirSecretSharing.m` | Adaptive-threshold secret sharing, type-aware encoding       |
+| Clustering      | `ClusterManager.m`      | Spectral clustering, eigengap-based cluster count            |
+| Adaptation      | `SolutionAdapter.m`     | Parameter normalization + feasibility repair                 |
+| Metrics         | `PerformanceMetrics.m`  | HV, IGD, diversity, spacing                                  |
+| Statistics      | `StatisticalAnalyzer.m` | Bootstrap confidence intervals, Holm-corrected tests         |
 
 ## Documentation
 
@@ -163,6 +163,8 @@ Detailed documentation is under [`docs/`](docs/):
 ```
 
 Runs a lightweight smoke test to verify the framework initializes and executes correctly.
+
+
 
 ## Citing
 
