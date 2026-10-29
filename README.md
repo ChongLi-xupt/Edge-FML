@@ -174,7 +174,7 @@ If you use this code in your research, please cite:
 @article{Edge-FML,
   title={Federated Membrane Learning for Heterogeneous Edge Intelligence: A Privacy-Preserving, Communication-Efficient Framework for Constrained Multi-Objective Optimization},
   author={Shouheng Tuo, Chong Li, Ye Tian, Yixin Yang, and Huiying Hu},
-  journal={Swarm and Evolutionary Computation},
+  journal={Applied Intelligence},
   year={2026}, 
   note={Under review}
 }
